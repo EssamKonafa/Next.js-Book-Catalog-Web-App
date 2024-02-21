@@ -5,12 +5,12 @@ import ASide from "@/components/home/ASide";
 
 export default function Home() {
   return (
-    <div className="flex">
+    <div className="">
       
-      <ASide />
+      {/* <ASide /> */}
 
-      <div>
-        <Header />
+      <div>   
+        {/* <Header /> */}
         <Main />
       </div>
       

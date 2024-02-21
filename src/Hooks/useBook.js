@@ -19,6 +19,7 @@ function getBooksData() {
         try {
             const response = await instance.get(`/?page=${page}`)
             setBooks(response.data.results)
+            // console.log(response.data.results)
             setTotalPages(response.data.count)
         } catch (error) {
             console.error('there is an error in fetching books data', error);

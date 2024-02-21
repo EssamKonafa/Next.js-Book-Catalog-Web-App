@@ -5,13 +5,13 @@ import { useRouter } from 'next/navigation';
 
 function Books({ book }) {
 
-    const maxLength = 12
+    const maxLength = 11
 
     const cover = book.formats['image/jpeg']
 
     function cuttingString(string, maxLength) {
         if (string.length > maxLength) {
-            return string.substring(0, maxLength) + '...'
+            return string.substring(0, maxLength) +'..'
         }
         return string
     }
@@ -23,7 +23,7 @@ function Books({ book }) {
 
     return (
         <div 
-        className='hover:scale-110 duration-500 ease-in-out cursor-pointer hover:shadow-md hover:shadow-gray-500 hover:rounded-md'
+        className='hover:scale-105 duration-500 ease-in-out cursor-pointer hover:shadow-md hover:shadow-gray-500 hover:rounded-md'
         onClick={()=> navigate(book.id)}
         >
 

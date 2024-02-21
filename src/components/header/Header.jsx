@@ -17,7 +17,7 @@ function Header() {
 
     return (
         <>
-            <div className='bg-slate-50 flex justify-between relative p-5 '>
+            <div className='bg-slate-50 flex justify-between relative p-3'>
                 <div className="">
                     <FaSearch className='absolute ml-2 my-2 text-gray-400' />
                     <input
@@ -27,9 +27,9 @@ function Header() {
                     />
                 </div>
 
-                {/* <div className='font-semibold'>
-                    <p>E-Book</p>
-                </div> */}
+                <div className='font-bold text-center text-xl'>
+                    <p>Book Catalog</p>
+                </div>
 
                 <div className='flex space-x-2'>
                     {mode ? (

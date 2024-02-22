@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
 import { IoArrowBackCircleSharp } from "react-icons/io5";
+import { GrLinkPrevious,GrLinkNext } from "react-icons/gr";
 
 function BookDetails({ params }) {
 
@@ -37,10 +38,10 @@ function BookDetails({ params }) {
   return (
     <div className='relative'>
       {/* <Header/> */}
-        <button className='absolute top-4 left-14  rounded-3xl bg-slate-400 font-bold m-2 p-2 hover:bg-slate-500'
+        <button className='absolute top-4 left-14  rounded-3xl bg-slate-400 font-bold m-2 p-4 hover:bg-slate-500'
         onClick={back}
         >
-                Back
+                <GrLinkPrevious/>
             </button>
             {/* <IoArrowBackCircleSharp className='text-3xl cursor-pointer  '/> */}
 

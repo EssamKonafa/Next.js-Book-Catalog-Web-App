@@ -10,16 +10,19 @@ function getBooksData() {
     const [page, setPage] = useState(1)
     const [totalPages,setTotalPages]=useState([])
 
-    const handlePagination=(newPage)=>{
-        const updatePage = setPage(Math.max(1,page+newPage))
-    }
+    // const handlePagination=(newPage)=>{
+    //     const updatePage = setPage(Math.max(1,page+newPage))
+    // }
+    const handlePagination = (newPage) => {
+        setPage((prevPage) => Math.max(1, prevPage + newPage));
+      };
 
     //speaking to API and setting the response in state with try and handling errors with catch
     const handleGetBooks = async () => {
         try {
             const response = await instance.get(`/?page=${page}`)
             setBooks(response.data.results)
-            // console.log(response.data.results)
+            // console.log(response.data)
             setTotalPages(response.data.count)
         } catch (error) {
             console.error('there is an error in fetching books data', error);

@@ -1,15 +1,21 @@
+'use client'
+import getBooksData from '@/Hooks/useBook'
 import React from 'react'
+import Author from './Author'
 
-function Authors() {
+function Authors({ books }) {
+
   return (
-    <div>
-        <p>author</p>
-        <p>author</p>
-        <p>author</p>
-        <p>author</p>
-        <p>author</p>
-        <p>author</p>
-    </div>
+    <>
+      <div className='bg-slate-50 p-3 pr-8 pl-8 mt-4 mr-4 rounded-3xl shadow-md'>
+        <div>
+          <p className='font-bold text-xl pb-5 text-center'>Trending Authors</p>
+        </div>
+        {books.slice(0,4).map((author) => (
+          <Author key={author.id} author={author}/>
+        ))}
+      </div>
+    </>
   )
 }
 

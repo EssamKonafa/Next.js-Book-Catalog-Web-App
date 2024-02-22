@@ -1,5 +1,6 @@
 'use client'
 import getBooksData from '@/Hooks/useBook';
+import ASide from '@/components/home/ASide';
 import Authors from '@/components/home/Authors'
 import Badges from '@/components/home/Badges';
 import Books from '@/components/home/Books'
@@ -12,9 +13,11 @@ function Main() {
     const { books, handlePagination, totalPages, page } = getBooksData()
 
     return (
-        <div className='flex'>
+        <div className='flex '>
 
-            <div className='bg-white rounded-3xl p-5 m-4'>
+            <ASide />
+
+            <div className='bg-slate-50 rounded-3xl p-5 m-4 shadow-md'>
 
                 <div className='flex'>
                     <Badges text='all' />
@@ -23,19 +26,19 @@ function Main() {
                 </div>
 
                 <div className='grid grid-cols-6 gap-8'>
-                    {books.slice(0,12).map((book) => (
+                    {books.slice(0, 12).map((book) => (
                         <Books key={book.id} book={book} />
                     ))}
                 </div>
 
                 <div className='text-center pt-4'>
-                    <Pagination books={books} handlePagination={handlePagination} page={page} totalPages={totalPages}/>
+                    <Pagination books={books} handlePagination={handlePagination} page={page} totalPages={totalPages} />
                 </div>
             </div>
 
             <div className=''>
-                <Authors />
-                <Popular />
+                <Authors books={books}/>
+                <Popular books={books}/>
             </div>
 
         </div>

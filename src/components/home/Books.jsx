@@ -23,7 +23,7 @@ function Books({ book }) {
 
     return (
         <div 
-        className='hover:scale-105 duration-500 ease-in-out cursor-pointer hover:shadow-md hover:shadow-gray-500 hover:rounded-md'
+        className='hover:scale-110 duration-500 ease-in-out cursor-pointer hover:rounded-md'
         onClick={()=> navigate(book.id)}
         >
 

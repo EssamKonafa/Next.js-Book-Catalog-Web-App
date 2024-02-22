@@ -17,7 +17,7 @@ function Header() {
 
     return (
         <>
-            <div className='bg-slate-50 flex justify-between relative p-3'>
+            <div className='bg-slate-50 flex justify-between relative p-3 shadow-sm'>
                 <div className="">
                     <FaSearch className='absolute ml-2 my-2 text-gray-400' />
                     <input
@@ -27,7 +27,7 @@ function Header() {
                     />
                 </div>
 
-                <div className='font-bold text-center text-xl'>
+                <div className='font-bold text-center text-xl items-center'>
                     <p>Book Catalog</p>
                 </div>
 

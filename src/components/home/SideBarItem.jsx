@@ -11,7 +11,7 @@ function SideBarItem({ icon, text, active }) {
                     ${active ? 'bg-slate-300 text-indigo-800 font-extrabold' : 'hover:bg-slate-200 text-gray-800'}`
                 }
                 >
-                {icon}
+                {icon}  
                 <span className='lg:block hidden'>
 
                 {text}

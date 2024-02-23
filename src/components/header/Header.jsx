@@ -1,4 +1,5 @@
 'use client'
+import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'
 import { FaSearch } from "react-icons/fa";
 import { MdOutlineDarkMode, MdDarkMode, MdOutlineFavorite, MdFavoriteBorder } from "react-icons/md";
@@ -13,6 +14,11 @@ function Header() {
     }
     function toggleFavorite(){
         setFavorite(!favorite)
+    }
+
+    const router = useRouter()
+    function go(){
+        router.push('/favorites')
     }
 
     return (
@@ -31,7 +37,7 @@ function Header() {
                     <p>Book Catalog</p>
                 </div>
 
-                <div className='flex space-x-2'>
+                <div className='flex space-x-2' onClick={go}>
                     {mode ? (
                         <>
                         <MdDarkMode  className='border-2 rounded-3xl border-blue-200 bg-slate-100 text-4xl p-1 cursor-pointer' onClick={toggleDisply}/>

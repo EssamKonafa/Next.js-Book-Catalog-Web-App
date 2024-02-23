@@ -10,7 +10,7 @@ export default function Home() {
       {/* <ASide /> */}
 
       <div>   
-        <Header />
+        {/* <Header /> */}
       {/* <ASide /> */}
 
         <Main />

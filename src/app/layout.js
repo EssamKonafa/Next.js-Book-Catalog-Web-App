@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/header/Header";
 import ASide from "@/components/home/ASide";
+import { TheProvider } from "@/redux/provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,15 +15,28 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="">
-        {/* <Header/> */}
-          {/* <ASide /> */}
+        <TheProvider>
 
-        </div>
-        <div className="">
-          {/* <ASide /> */}
-          {children}
-        </div>
+          <div className="flex ">
+
+            <span className="w-full">
+
+              <Header />
+
+              <span className="flex">
+
+                <ASide />
+
+                <span className="w-full">
+                  {children}
+                </span>
+
+              </span>
+
+            </span>
+
+          </div>
+        </TheProvider>
       </body>
     </html>
   );

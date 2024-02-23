@@ -15,7 +15,7 @@ function MDB({ book }) {
 
     const router = useRouter()
     function go(){
-        router.push(`/${book.id}`)
+        router.push(`/books/${book.id}`)
     }
 
     return (

@@ -8,14 +8,15 @@ import Pagination from '@/components/home/Pagination';
 import Popular from '@/components/home/Popular'
 import React from 'react'
 
+
 function Main() {
 
     const { books, handlePagination, totalPages, page } = getBooksData()
 
     return (
-        <div className='flex '>
+        <div className='flex xs:flex-row md:flex-row'>
 
-            <ASide />
+            {/* <ASide /> */}
 
             <div className='bg-slate-50 rounded-3xl p-5 m-4 shadow-md'>
 
@@ -25,9 +26,10 @@ function Main() {
                     {/* <Badges text='high' /> */}
                 </div>
 
-                <div className='grid grid-cols-6 gap-8'>
-                    {books.slice(0, 12).map((book) => (
+                <div className='grid lg:grid-cols-4 gap-8 sm:grid-cols-3'>
+                    {books.map((book) => (
                         <Books key={book.id} book={book} />
+
                     ))}
                 </div>
 

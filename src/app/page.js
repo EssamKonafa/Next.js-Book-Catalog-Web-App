@@ -5,17 +5,8 @@ import ASide from "@/components/home/ASide";
 
 export default function Home() {
   return (
-    <div className="">
-      
-      {/* <ASide /> */}
-
-      <div>   
-        {/* <Header /> */}
-      {/* <ASide /> */}
-
+    <div> 
         <Main />
-      </div>
-      
     </div>
   );
 }

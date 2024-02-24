@@ -23,7 +23,7 @@ function Header() {
 
     return (
         <>
-            <div className='bg-slate-50 flex justify-between relative p-3 shadow-sm'>
+            <div className='bg-slate-50 flex justify-between p-3 shadow-sm sticky top-0 z-10  '>
                 <div className="">
                     <FaSearch className='absolute ml-2 my-2 text-gray-400' />
                     <input

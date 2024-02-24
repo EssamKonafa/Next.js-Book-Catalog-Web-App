@@ -6,7 +6,7 @@ function Pagination({ page, handlePagination, totalPages }) {
     return (
         <div className='flex justify-center ' >
 
-            <button onClick={() => handlePagination(-1)} className='rounded-3xl bg-slate-200 font-semibold p-4 hover:bg-slate-400' >
+            <button onClick={() => handlePagination((page)=>page-1)} className='rounded-3xl bg-slate-200 font-semibold p-4 hover:bg-slate-400' >
                 <GrLinkPrevious/>
             </button>
 
@@ -14,7 +14,7 @@ function Pagination({ page, handlePagination, totalPages }) {
                 {page} of {totalPages}
             </p>
 
-            <button onClick={() => handlePagination(+1)} className='rounded-3xl bg-slate-200 font-semibold p-4 hover:bg-slate-400'>
+            <button onClick={() => handlePagination((page)=>page+1)} className='rounded-3xl bg-slate-200 font-semibold p-4 hover:bg-slate-400'>
                 <GrLinkNext/>
             </button>
         </div>

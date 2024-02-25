@@ -1,18 +1,15 @@
 import React from 'react'
 import { RxAvatar } from "react-icons/rx";
+import { cuttingString } from '@/Hooks/cutString';
 
 function Author ({ author }) {
 
-    const maxLength = 12
-    function cuttingString(string, maxLength) {
-        if (string.length > maxLength) {
-            return string.substring(0, maxLength)
-        } return string
-    }
+    const maxLength = 10
+
 
     return (
         <div className='font-medium '>
-            {author.authors.slice(0, 4).map((auth) => (
+            {author.authors.map((auth) => (
                 <div key={auth.name} className='flex items-center gap-2 p-2 text-xl'>
                     <RxAvatar className='text-3xl'/>
                     {cuttingString(auth.name, maxLength)}

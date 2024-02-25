@@ -11,8 +11,12 @@ import { MdOutlineDarkMode, MdDarkMode, MdOutlineFavorite, MdFavoriteBorder } fr
 import { useDispatch, useSelector } from 'react-redux';
 import { addFavorite, removeFavorite } from '@/redux/slices/favorites';
 import Loader from '@/components/home/Loader';
+import { useCounter } from '@/Hooks/useCounter';
+import { decrementCount, incrementCount } from '@/redux/slices/counter';
 
 function page() {
+
+  const counter = useCounter()
 
   const [loader, setLoader] = useState(true)
 
@@ -52,15 +56,17 @@ function page() {
   function handleAddFavorite(book) {
     if (favoritesState.favorites.includes(book)) {
       dispatch(removeFavorite(book.id))
+      dispatch(decrementCount())
     } else {
       dispatch(addFavorite(book))
+      dispatch(incrementCount())
     }
   }
 
   return (
     <div className='relative flex'>
 
-      <button className='absolute top-0 left-28 rounded-3xl bg-slate-400 font-bold m-2 p-4 hover:bg-slate-500'
+      <button className='absolute top-0 left-28 rounded-3xl bg-slate-400 font-bold m-2 p-4 duration-500 hover:bg-slate-500'
         onClick={back}
       >
         <GrLinkPrevious />
@@ -89,11 +95,11 @@ function page() {
             <p className='font-bold text-2xl pt-10'>
               <p className='pb-2 flex items-center gap-2'>
                 {bookDetails.title}
-                <span className=''>
+                <span >
                   {favoritesState.favorites.includes(bookDetails) ? (
-                    <MdOutlineFavorite className='text-4xl cursor-pointer text-red-600 p-1 border rounded-3xl border-red-600   hover:bg-red-200 ' onClick={() => handleAddFavorite(bookDetails)} />
+                    <MdOutlineFavorite className='text-4xl cursor-pointer text-red-600 p-1 border rounded-3xl border-red-600   hover:bg-red-200 duration-500' onClick={() => handleAddFavorite(bookDetails)} />
                   ) : (
-                    <MdFavoriteBorder className='text-4xl cursor-pointer text-red-600 p-1 border rounded-3xl border-red-600 hover:bg-red-200 ' onClick={() => handleAddFavorite(bookDetails)} />
+                    <MdFavoriteBorder className='text-4xl cursor-pointer text-red-600 p-1 border rounded-3xl border-red-600 hover:bg-red-200 duration-500' onClick={() => handleAddFavorite(bookDetails)} />
                   )}
                 </span>
               </p>

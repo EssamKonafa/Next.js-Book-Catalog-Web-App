@@ -7,47 +7,39 @@ import { useDispatch, useSelector } from 'react-redux';
 import favorites, { addFavorite, removeFavorite, toggleFavorite } from '../../redux/slices/favorites';
 import Loader from './Loader';
 import instance from '@/axiosConfig/instance';
+import { cuttingString } from '@/Hooks/cutString';
+import counter, { decrementCount, incrementCount } from '@/redux/slices/counter';
 
 function Books({ book }) {
 
     const[loader,setLoader]=useState(true)
 
     const favoritesState = useSelector((state) => state.favorites)
+
     const dispatch = useDispatch()
 
     function handleAddFavorite(book) {
         if (favoritesState.favorites.includes(book)) {
             dispatch(removeFavorite(book.id))
+            dispatch(decrementCount())
         } else {
             dispatch(addFavorite(book))
+            dispatch(incrementCount())
         }
     }
 
-    const maxLength = 20
+    const maxLength = 9
 
     const cover = book.formats['image/jpeg']
-
-    function cuttingString(string, maxLength) {
-        if (string.length > maxLength) {
-            return string.substring(0, maxLength)
-        }
-        return string
-    }
 
     const router = useRouter()
     function navigate() {                                                                                   
         router.push(`/books/${book.id}`)
     }
 
-    // useEffect(() => {
-    //     const delay = setTimeout(()=>{
-    //         setLoader(false); 
-    //     },2000)                     
-    //   }, []);
-
     return (
         <div
-            className='hover:scale-110 duration-500 ease-in-out  hover:rounded-xl p-2 bg-gray-200 rounded-xl'>
+            className='hover:scale-105 border-4 border-slate-200  duration-500 ease-in-out hover:bg-slate-200 hover:rounded-xl p-2 rounded-xl'>
 
             {book == [] ? (
                 <div className="absolute top-40 left-96 ">
@@ -57,7 +49,7 @@ function Books({ book }) {
                 <>
                     <Image
                         src={cover}
-                        width={200}
+                        width={288}
                         height={100}
                         className='rounded-xl cursor-pointer'
                         alt='book cover'
@@ -72,14 +64,13 @@ function Books({ book }) {
                         <div className=''>
                             {favoritesState.favorites.includes(book) ? (
                                 <div>
-                                    <MdOutlineFavorite className='text-4xl cursor-pointer text-red-600 p-1 border border-red-500 rounded-3xl hover:bg-red-300' onClick={() => handleAddFavorite(book)} />
+                                    <MdOutlineFavorite className='text-4xl cursor-pointer text-red-600 p-1 border border-red-500 rounded-3xl hover:bg-red-300 duration-500' onClick={() => handleAddFavorite(book)} />
                                     <p className='text-xs  test-center'>remove</p>
 
                                 </div>
                             ) : (
                                 <div>
-                                    <MdFavoriteBorder className='text-4xl cursor-pointer text-red-600 p-1 border    rounded-3xl hover:bg-red-300 border-red-500' onClick={() => handleAddFavorite(book)} />
-                                    <p className='text-xs text-center '>add</p>
+                                    <MdFavoriteBorder className='text-4xl cursor-pointer text-red-600 p-1 border    rounded-3xl hover:bg-red-300 border-red-500 duration-500' onClick={() => handleAddFavorite(book)} />
                                 </div>
                             )}
                         </div>

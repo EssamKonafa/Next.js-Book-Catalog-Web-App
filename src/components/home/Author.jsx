@@ -4,7 +4,7 @@ import { cuttingString } from '@/Hooks/cutString';
 
 function Author ({ author }) {
 
-    const maxLength = 10
+    const maxLength = 7
 
 
     return (

@@ -1,13 +1,9 @@
 'use client'
-import instance from '@/axiosConfig/instance';
-import Header from '@/components/header/Header';
 import Image from 'next/image';
 import { useParams, useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
-import { IoArrowBackCircleSharp } from "react-icons/io5";
 import { GrLinkPrevious, GrLinkNext } from "react-icons/gr";
-import ASide from '@/components/home/ASide';
-import { MdOutlineDarkMode, MdDarkMode, MdOutlineFavorite, MdFavoriteBorder } from "react-icons/md";
+import { MdOutlineFavorite, MdFavoriteBorder } from "react-icons/md";
 import { useDispatch, useSelector } from 'react-redux';
 import { addFavorite, removeFavorite } from '@/redux/slices/favorites';
 import Loader from '@/components/home/Loader';
@@ -16,17 +12,21 @@ import { decrementCount, incrementCount } from '@/redux/slices/counter';
 
 function page() {
 
+  //custom hook for handling counter 
   const counter = useCounter()
 
-  const [loader, setLoader] = useState(true)
+    //state for handling loading checking if the state carrying data or not yet and depends on it shows the loader
+    const [loader, setLoader] = useState(true)
 
+  //grabbing the book id
   const params = useParams()
-
   const id = params.id
 
+  //state for handling showing details for specific book
   const [bookDetails, setBookDetails] = useState({})
 
-  const getBookDetails = async () => {
+    //speaking to API and setting the response in state with try and handling errors with catch and setting with Server-Side Rendering
+    const getBookDetails = async () => {
     try {
       const response = await fetch(`https://gutendex.com/books/${id}`)
       const details = await response.json()
@@ -38,26 +38,35 @@ function page() {
     }
   }
 
-  useEffect(() => {
+    //passing function getBookDetails to useEffect hook to rendering data after mounting and rendering the component
+    useEffect(() => {
     getBookDetails()
   }, [])
 
+  //handling navigate
   const router = useRouter()
   function back() {
     router.push('/')
   }
 
+  //specify the right url image from the book 
   const bookCover = bookDetails.formats && bookDetails.formats['image/jpeg'];
 
+  //specify authors array from the state
   const authors = bookDetails.authors || []
 
+  //redux state and dispatching actions
   const favoritesState = useSelector((state) => state.favorites)
+
+  //dispatching add / remove favorite and counter
   const dispatch = useDispatch()
+
   function handleAddFavorite(book) {
     if (favoritesState.favorites.includes(book)) {
       dispatch(removeFavorite(book.id))
       dispatch(decrementCount())
-    } else {
+    }
+    else {
       dispatch(addFavorite(book))
       dispatch(incrementCount())
     }
@@ -75,7 +84,7 @@ function page() {
       {loader ? (
         (
           <div className="absolute top-40 left-96 ">
-            <Loader/>
+            <Loader />
           </div>
         )
       ) : (

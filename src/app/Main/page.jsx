@@ -1,6 +1,4 @@
 'use client'
-import getBooksData from '@/Hooks/useBook';
-import ASide from '@/components/home/ASide';
 import Authors from '@/components/home/Authors'
 import Books from '@/components/home/Books'
 import Loader from '@/components/home/Loader';
@@ -10,7 +8,6 @@ import { useEffect, useState } from 'react';
 
 function Main() {
 
-    // const { books, handlePagination, totalPages, page } = getBooksData()
     //state for handling the data coming from the API and setting it in array
     const [books, setBooks] = useState([])
 
@@ -25,10 +22,9 @@ function Main() {
     //state for handling loading checking if the state carrying data or not yet and depends on it shows the loader
     const [loader, setLoader] = useState(true)
 
-    //speaking to API and setting the response in state with try and handling errors with catch
+    //speaking to API and setting the response in state with try and handling errors with catch and setting loader status with Server-Side Rendering
     const handleGetBooks = async () => {
         try {
-            // const bookData = await serverSideRenderingBooks(page)
             setLoader(true)
             const response = await fetch(`https://gutendex.com/books/?page=${page}`)
             const booksData = await response.json()
@@ -41,7 +37,7 @@ function Main() {
         }
     }
 
-    //passing function handleGetBooks to useEffect hook to rendering data after mounting and rendering the component
+    //passing function handleGetBooks to useEffect hook to rendering data after mounting the component
     useEffect(() => {
         handleGetBooks()
     }, [page])

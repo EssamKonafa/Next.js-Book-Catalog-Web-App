@@ -13,7 +13,7 @@ function SideBarItem({ icon, text, active }) {
                 >
                 {icon}  
                 <span className='lg:block hidden'>
-
+                    
                 {text}
                 </span>
             </li>

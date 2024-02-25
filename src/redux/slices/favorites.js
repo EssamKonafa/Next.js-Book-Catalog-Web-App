@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+//redux slice for handling adding or removing favorites
 export const favoritesSlice = createSlice({
     name: 'favorites',
     initialState: {

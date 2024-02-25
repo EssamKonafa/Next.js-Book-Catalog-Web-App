@@ -4,18 +4,20 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { MdFavoriteBorder, MdOutlineFavorite } from "react-icons/md";
 import { useDispatch, useSelector } from 'react-redux';
-import favorites, { addFavorite, removeFavorite, toggleFavorite } from '../../redux/slices/favorites';
+import favorites, { addFavorite, removeFavorite, } from '../../redux/slices/favorites';
 import Loader from './Loader';
-import instance from '@/axiosConfig/instance';
 import { cuttingString } from '@/Hooks/cutString';
 import counter, { decrementCount, incrementCount } from '@/redux/slices/counter';
 
 function Books({ book }) {
 
-    const[loader,setLoader]=useState(true)
+    //state for handling loading checking if the state carrying data or not yet and depends on it shows the loader
+    const [loader, setLoader] = useState(true)
 
+    //redux state to grip the state
     const favoritesState = useSelector((state) => state.favorites)
 
+    //firing add / remove favorite and count 
     const dispatch = useDispatch()
 
     function handleAddFavorite(book) {
@@ -28,12 +30,15 @@ function Books({ book }) {
         }
     }
 
+    //length for controlling book's title length
     const maxLength = 9
 
+    //specify the right url image from the book 
     const cover = book.formats['image/jpeg']
 
+    //handling navigation
     const router = useRouter()
-    function navigate() {                                                                                   
+    function navigate() {
         router.push(`/books/${book.id}`)
     }
 
@@ -58,7 +63,7 @@ function Books({ book }) {
 
                     <div className='flex justify-between pt-1'>
 
-                        <p className='font-semibold text-slate-800 text-sm ' >
+                        <p className='font-semibold text-slate-800 text-sm  cursor-pointer' onClick={() => navigate(book.id)}>
                             {cuttingString(book.title, maxLength)}
                         </p>
                         <div className=''>
@@ -79,7 +84,7 @@ function Books({ book }) {
 
                     {book.authors.map((author, index) => (
                         <div key={index}>
-                            <p className='font-semibold text-sm text-gray-500'>
+                            <p className='font-semibold text-sm text-gray-500 cursor-pointer' onClick={() => navigate(book.id)}>
                                 by {cuttingString(author.name, maxLength)}
                             </p>
                         </div>

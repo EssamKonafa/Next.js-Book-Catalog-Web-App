@@ -4,11 +4,14 @@ import React from 'react'
 import { cuttingString } from '@/Hooks/cutString';
 
 function MDB({ book }) {
-
+    
+    //specify the right url image from the book 
     const bookCover = book.formats['image/jpeg'] || []
-
+    
+    //length for controlling book's title length
     const maxLength = 10
 
+    //handling navigation
     const router = useRouter()
     function go(){
         router.push(`/books/${book.id}`)
@@ -16,12 +19,12 @@ function MDB({ book }) {
 
     return (
         <>
-            <div className='flex gap-5 p-2 hover:bg-slate-200 duration-500 cursor-pointer rounded-xl ' onClick={go}>
+            <div className='flex gap-5 p-2 hover:bg-slate-200 duration-500 cursor-pointer rounded-xl items-center' onClick={go}>
 
                 <div >
                     <Image
                         src={bookCover}
-                        width={25}
+                        width={30}
                         height={10}
                         alt='book cover'
                     />

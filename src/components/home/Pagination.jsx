@@ -3,6 +3,8 @@ import { GrLinkPrevious,GrLinkNext } from "react-icons/gr";
 
 function Pagination({ page, handlePagination, totalPages }) {
 
+    //handling pagination
+
     return (
         <div className='flex justify-center ' >
 

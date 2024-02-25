@@ -4,14 +4,16 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useRef, useState } from 'react'
 import { FaSearch } from "react-icons/fa";
-import { MdOutlineDarkMode, MdDarkMode, MdOutlineFavorite, MdFavoriteBorder } from "react-icons/md";
+import {  MdFavoriteBorder } from "react-icons/md";
 import Loader from '../home/Loader';
 import { cuttingString } from '@/Hooks/cutString';
 
 function Header() {
 
+    //custom hook for handling counter 
     const counter = useCounter()
 
+    //navigation handing
     const router = useRouter()
     function go() {
         router.push('/favorites')
@@ -20,20 +22,25 @@ function Header() {
         router.push(`/books/${id}`)
     }
 
-    const [mode, setMode] = useState(false)
-    const [favorite, setFavorite] = useState(false)
-
     //search handling
-    //states of search
+    //state for holding the key words what the user searching for
     const [searchKeyWord, setSearchKeyWord] = useState('')
-    const [searchResult, setSearchResult] = useState([])
-    const [loader, setLoader] = useState(false)
-    const resultDivRef= useRef(null)
 
+    // state for holding the book array with matching key word what the user searching for
+    const [searchResult, setSearchResult] = useState([])
+
+    //state for handling loading checking if the state carrying data or not yet and depends on it shows the loader
+    const [loader, setLoader] = useState(false)
+
+    //creating a reference for specific element
+    const resultDivRef = useRef(null)
+
+    //event listener when user start typing
     function handleSearchChange(event) {
         setSearchKeyWord(event.target.value)
     }
 
+    //handling search functionality and setting the response in the state Server-Side Rendering to show it and handling errors
     const searchHandling = async () => {
         try {
             setLoader(true)
@@ -47,14 +54,17 @@ function Header() {
         }
     }
 
-    const maxLength=20
+    //length for controlling book's title length
+    const maxLength = 20
 
+    //passing function to useEffect hook to rendering data after mounting the component
     useEffect(() => {
         if (searchKeyWord.length > 1) {
             searchHandling([])
         }
-        const handleCloseResultDiv=(event)=>{
-            if(resultDivRef.current && !resultDivRef.current.contains(event.target)){
+        //handling closing of the div search after the user clicking outside it any place on the document
+        const handleCloseResultDiv = (event) => {
+            if (resultDivRef.current && !resultDivRef.current.contains(event.target)) {
                 setSearchResult([])
             }
         }
@@ -63,15 +73,8 @@ function Header() {
         return () => {
             document.body.removeEventListener('click', handleCloseResultDiv);
         };
-        
-    }, [searchKeyWord])
 
-    // function toggleDisply() {
-    //     setMode(!mode)
-    // }
-    // function toggleFavorite() { 
-    //     setFavorite(!favorite)
-    // }
+    }, [searchKeyWord])
 
     return (
         <>
@@ -105,8 +108,8 @@ function Header() {
                                             />
 
                                             <p>
-                                                
-                                                {cuttingString(result.title,maxLength)}
+
+                                                {cuttingString(result.title, maxLength)}
                                             </p>
 
                                         </div>
@@ -123,29 +126,10 @@ function Header() {
                 </div>
 
                 <div className='flex space-x-2' >
-                    <MdOutlineDarkMode className='border-2 rounded-3xl border-blue-200 bg-slate-100 text-4xl p-1 cursor-pointer duration-500 hover:bg-slate-300' />
                     <>
-                    <MdFavoriteBorder className='border-2 rounded-3xl border-blue-200 bg-slate-100 text-4xl p-1 cursor-pointer duration-500 hover:bg-slate-300' onClick={go}/>
+                        <MdFavoriteBorder className='border-2 rounded-3xl border-blue-200 bg-slate-100 text-4xl p-1 cursor-pointer duration-500 hover:bg-slate-300' onClick={go} />
                         {counter}
                     </>
-                    {/* {mode ? (
-                        <>
-                        </>
-                    ) : (
-                        <>
-                            <MdOutlineDarkMode className='border-2 rounded-3xl border-blue-200 bg-slate-100 text-4xl p-1 cursor-pointer' onClick={toggleDisply} />
-                        </>
-                    )}
-                    {favorite ? (
-                        <>
-                            {counter}
-                        </>
-                    ) : (
-                        <>
-                            <MdFavoriteBorder className='border-2 rounded-3xl border-blue-200 bg-slate-100 text-4xl p-1 cursor-pointer' onClick={toggleFavorite} />
-                            {counter}
-                        </>
-                    )} */}
                 </div>
             </div>
         </>

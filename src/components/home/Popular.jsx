@@ -20,24 +20,24 @@ function Popular() {
             setLoader(false)
         }
     }
-    //passing function handleGetBooks to useEffect hook to rendering data after mounting and rendering the component
+    //passing function handleGetBooks to useEffect hook to rendering data after mounting the component
     useEffect(() => {
         handleGetBooks()
     }, [])
 
     return (
         <>
-            <div className='bg-slate-50  p-4 pr-5 pl-5 mt-4 mr-4 ml-4 rounded-3xl shadow-md sticky top-80  z-10  '>
+            <div className='bg-slate-50  p-4 pr-5 pl-5 mt-4 mr-2 ml-2 rounded-3xl shadow-md sticky top-80  z-10  '>
                 <div>
-                    <p className='font-bold text-center text-xl pb-2'>Most Downloading</p>
+                    <p className='font-bold text-center text-md pb-2'>Most Downloading</p>
                 </div>
                 {loader ? (
                     <div className='m-10'>
                     <Loader />
                     </div>
                 ) : (
-                    <div>
-                        {books.slice(0, 5).map((book) => (
+                    <div  >
+                        {books.slice(0, 4).map((book) => (
                             <MDB key={book.id} book={book} />
                         ))}
                     </div>

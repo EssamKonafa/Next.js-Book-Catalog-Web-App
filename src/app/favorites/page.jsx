@@ -1,39 +1,44 @@
 'use client'
 import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
-import img from '../../../public/cover.jpg'
 import { MdOutlineFavorite } from "react-icons/md";
-import ASide from '@/components/home/ASide';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/navigation';
-import { addFavorite, removeFavorite } from '@/redux/slices/favorites';
+import { removeFavorite } from '@/redux/slices/favorites';
 import { cuttingString } from '@/Hooks/cutString';
 import { useCounter } from '@/Hooks/useCounter';
 import { decrementCount } from '@/redux/slices/counter';
 
 function page() {
 
+  //custom hook for handling counter 
   const counter = useCounter()
 
+  //redux state to grip the state
   const favoritesState = useSelector((state) => state.favorites)
 
+  //state for favorite books
   const [favoriteBooks, setFavoriteBooks] = useState([])
 
+  //after the component mount fetching favorites array
   useEffect(() => {
     setFavoriteBooks(favoritesState.favorites)
   }, [favoritesState.favorites])
 
+  //firing add / remove favorite and count 
   const dispatch = useDispatch()
   function handleRemoveFavorite(book) {
     dispatch(removeFavorite(book.id))
     dispatch(decrementCount())
   }
 
+  //handling navigate
   const router = useRouter()
   function navigate(id) {
     router.push(`books/${id}`)
   }
 
+  //length for controlling book's title length
   const maxLength = 13
 
   return (

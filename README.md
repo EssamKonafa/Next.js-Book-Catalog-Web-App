@@ -22,6 +22,8 @@ live site: https://next-js-book-catalog-web-app.vercel.app/
 ## 5- Pagination:
    Implements pagination for efficiently navigating through the entire list of books from the API.
 
+## 6- full responsive with all screen resolutions
+
 ## steps for running the project locally:-
 ## 1- open VS code
 ## 2- choose open folder and select the path of the project 
